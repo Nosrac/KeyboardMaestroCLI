@@ -1,11 +1,10 @@
 # KeyboardMaestroCLI
-An unofficial command line utility for interfacing with Keyboard Maestro
+An unofficial command line utility for interfacing with Keyboard Maestro.  Currently only supports running macros.
 
+Usage Example:
 ```
 km run "Display Notification" -p "Yippity Doo!"
 ```
-
-USAGE: km run <name-or-id> [--parameter <parameter>]
 
 ### ARGUMENTS:
   <name-or-id>            Name or ID of the script to run
