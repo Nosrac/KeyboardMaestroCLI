@@ -170,7 +170,7 @@ struct KeyboardMaestro: ParsableCommand {
 	}
 	
 	struct Raw: ParsableCommand {
-		static let configuration = CommandConfiguration(abstract: "Executs a raw script via XML", discussion: "It's pretty cool")
+		static let configuration = CommandConfiguration(abstract: "Executes a raw script via XML", discussion: "It's pretty cool")
 
 		@Argument(help: """
 			XML Code.  Example:
