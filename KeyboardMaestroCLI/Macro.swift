@@ -50,4 +50,15 @@ struct Macro {
 		
 		return macros
 	}
+	
+	static func run(nameOrID: String, parameter : String? = nil) {
+		var parameterAppendage = ""
+		if let parameter = parameter {
+			parameterAppendage = " with parameter \"\(parameter.escapingQuotes)\""
+		}
+		
+		let source = "tell application \"Keyboard Maestro Engine\" to do script \"\(nameOrID.escapingQuotes)\"\(parameterAppendage)"
+		
+		NSAppleScript(source: source)!.executeAndReturnError(nil)
+	}
 }
