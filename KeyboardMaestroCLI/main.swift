@@ -13,28 +13,54 @@ struct KeyboardMaestro: ParsableCommand {
 	static let configuration = CommandConfiguration(
 		commandName: "km",
 		abstract: "(Unofficial) Keyboard Maestro Command Line Interface",
-		subcommands: [Run.self, Macros.self, Groups.self, Variables.self, SpecificVariable.self])
-	
-    struct Run: ParsableCommand {
-        static let configuration = CommandConfiguration(abstract: "Runs a Keyboard Maestro macro")
+		subcommands: [Run.self, Edit.self, Enable.self, Disable.self, Macros.self, Groups.self, Variables.self, SpecificVariable.self])
+		
+	struct Run: ParsableCommand {
+		static let configuration = CommandConfiguration(abstract: "Runs a macro")
 
-		@Argument(help: "Name or ID of the script to run")
+		@Argument(help: "Name or ID of the macro")
 		var nameOrID: String
 
 		@Option(name: .shortAndLong, help: "Parameter to pass to your script")
 		var parameter: String?
 		
-        func run() {
-			var parameterAppendage = ""
-			if let parameter = parameter {
-				parameterAppendage = " with parameter \"\(parameter.escapingQuotes)\""
-			}
-			
-			let source = "tell application \"Keyboard Maestro Engine\" to do script \"\(nameOrID.escapingQuotes)\"\(parameterAppendage)"
-			
-			NSAppleScript(source: source)!.executeAndReturnError(nil)
-        }
-    }
+		func run() {
+			Macro.run(nameOrID: nameOrID, parameter: parameter)
+		}
+	}
+	
+	struct Edit: ParsableCommand {
+		static let configuration = CommandConfiguration(abstract: "Edits a macro")
+
+		@Argument(help: "Name or ID of the macro")
+		var nameOrID: String
+		
+		func run() {
+			Macro.edit(nameOrID: nameOrID)
+		}
+	}
+	
+	struct Enable: ParsableCommand {
+		static let configuration = CommandConfiguration(abstract: "Enables a macro")
+
+		@Argument(help: "Name or ID of the macro (or macro group)")
+		var nameOrID: String
+		
+		func run() {
+			Macro.enable(nameOrID: nameOrID)
+		}
+	}
+	
+	struct Disable: ParsableCommand {
+		static let configuration = CommandConfiguration(abstract: "Disables a macro")
+
+		@Argument(help: "Name or ID of the macro (or macro group)")
+		var nameOrID: String
+		
+		func run() {
+			Macro.disable(nameOrID: nameOrID)
+		}
+	}
 	
 	struct Macros : ParsableCommand {
 		@Flag(name: .short, help: "Only list IDs")

@@ -61,4 +61,27 @@ struct Macro {
 		
 		NSAppleScript(source: source)!.executeAndReturnError(nil)
 	}
+	
+	static func edit(nameOrID: String) {
+		let source = """
+			tell application \"Keyboard Maestro\"
+				activate
+				editMacro \"\(nameOrID.escapingQuotes)\"
+			end tell
+		"""
+		
+		NSAppleScript(source: source)!.executeAndReturnError(nil)
+	}
+	
+	static func enable(nameOrID: String) {
+		let source = "tell application \"Keyboard Maestro\" to setMacroEnable \"\(nameOrID.escapingQuotes)\" with enable"
+		
+		NSAppleScript(source: source)!.executeAndReturnError(nil)
+	}
+	
+	static func disable(nameOrID: String) {
+		let source = "tell application \"Keyboard Maestro\" to setMacroEnable \"\(nameOrID.escapingQuotes)\" without enable"
+		
+		NSAppleScript(source: source)!.executeAndReturnError(nil)
+	}
 }
