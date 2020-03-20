@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		27FB5CD624246DD900E1E497 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FB5CD524246DD900E1E497 /* main.swift */; };
 		27FB5CDE24246E4900E1E497 /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = 27FB5CDD24246E4900E1E497 /* ArgumentParser */; };
+		27FB5CE024253C8800E1E497 /* Macro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FB5CDF24253C8800E1E497 /* Macro.swift */; };
+		27FB5CE2242546E100E1E497 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FB5CE1242546E100E1E497 /* Group.swift */; };
+		27FB5CE42425570300E1E497 /* Variable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FB5CE32425570300E1E497 /* Variable.swift */; };
+		27FB5CE72425574A00E1E497 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 27FB5CE62425574A00E1E497 /* SQLite */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,6 +30,9 @@
 /* Begin PBXFileReference section */
 		27FB5CD224246DD900E1E497 /* km */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = km; sourceTree = BUILT_PRODUCTS_DIR; };
 		27FB5CD524246DD900E1E497 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		27FB5CDF24253C8800E1E497 /* Macro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Macro.swift; sourceTree = "<group>"; };
+		27FB5CE1242546E100E1E497 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		27FB5CE32425570300E1E497 /* Variable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Variable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27FB5CE72425574A00E1E497 /* SQLite in Frameworks */,
 				27FB5CDE24246E4900E1E497 /* ArgumentParser in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -60,6 +68,9 @@
 			isa = PBXGroup;
 			children = (
 				27FB5CD524246DD900E1E497 /* main.swift */,
+				27FB5CDF24253C8800E1E497 /* Macro.swift */,
+				27FB5CE1242546E100E1E497 /* Group.swift */,
+				27FB5CE32425570300E1E497 /* Variable.swift */,
 			);
 			path = KeyboardMaestroCLI;
 			sourceTree = "<group>";
@@ -82,6 +93,7 @@
 			name = KeyboardMaestroCLI;
 			packageProductDependencies = (
 				27FB5CDD24246E4900E1E497 /* ArgumentParser */,
+				27FB5CE62425574A00E1E497 /* SQLite */,
 			);
 			productName = KeyboardMaestroCLI;
 			productReference = 27FB5CD224246DD900E1E497 /* km */;
@@ -113,6 +125,7 @@
 			mainGroup = 27FB5CC924246DD900E1E497;
 			packageReferences = (
 				27FB5CDC24246E4900E1E497 /* XCRemoteSwiftPackageReference "swift-argument-parser" */,
+				27FB5CE52425574A00E1E497 /* XCRemoteSwiftPackageReference "SQLite" */,
 			);
 			productRefGroup = 27FB5CD324246DD900E1E497 /* Products */;
 			projectDirPath = "";
@@ -128,7 +141,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27FB5CE2242546E100E1E497 /* Group.swift in Sources */,
+				27FB5CE024253C8800E1E497 /* Macro.swift in Sources */,
 				27FB5CD624246DD900E1E497 /* main.swift in Sources */,
+				27FB5CE42425570300E1E497 /* Variable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,6 +318,14 @@
 				minimumVersion = 0.0.2;
 			};
 		};
+		27FB5CE52425574A00E1E497 /* XCRemoteSwiftPackageReference "SQLite" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stephencelis/SQLite.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.12.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -309,6 +333,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 27FB5CDC24246E4900E1E497 /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
 			productName = ArgumentParser;
+		};
+		27FB5CE62425574A00E1E497 /* SQLite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 27FB5CE52425574A00E1E497 /* XCRemoteSwiftPackageReference "SQLite" */;
+			productName = SQLite;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
