@@ -13,7 +13,7 @@ struct KeyboardMaestro: ParsableCommand {
 	static let configuration = CommandConfiguration(
 		commandName: "km",
 		abstract: "(Unofficial) Keyboard Maestro Command Line Interface",
-		subcommands: [Run.self, Edit.self, Enable.self, Disable.self, Macros.self, Groups.self, Variables.self, SpecificVariable.self])
+		subcommands: [Run.self, Edit.self, Enable.self, Disable.self, Macros.self, Groups.self, Variables.self, SpecificVariable.self, Raw.self])
 		
 	struct Run: ParsableCommand {
 		static let configuration = CommandConfiguration(abstract: "Runs a macro")
@@ -166,6 +166,27 @@ struct KeyboardMaestro: ParsableCommand {
 			} else {
 				print(variable!.value)
 			}
+		}
+	}
+	
+	struct Raw: ParsableCommand {
+		static let configuration = CommandConfiguration(abstract: "Executs a raw script via XML", discussion: "It's pretty cool")
+
+		@Argument(help: """
+			XML Code.  Example:
+
+			<dict><key>MacroActionType</key><string>SwitchToLastApplication</string></dict>
+
+			-or-
+
+			One command. Example:
+
+			SwitchToLastApplication
+		""")
+		var code: String
+		
+		func run() {
+			Macro.executeRaw(code: code)
 		}
 	}
 }

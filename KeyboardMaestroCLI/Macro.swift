@@ -84,4 +84,17 @@ struct Macro {
 		
 		NSAppleScript(source: source)!.executeAndReturnError(nil)
 	}
+	
+	static func executeRaw(code: String) {
+		
+		let source : String
+		
+		if code.hasPrefix("<dict>") {
+			source = "tell application \"Keyboard Maestro Engine\" to do script \"\(code.escapingQuotes)\""
+		} else {
+			source = "tell application \"Keyboard Maestro Engine\" to do script \"<dict><key>MacroActionType</key><string>\(code.escapingQuotes)</string></dict>\""
+		}
+		
+		NSAppleScript(source: source)!.executeAndReturnError(nil)
+	}
 }
