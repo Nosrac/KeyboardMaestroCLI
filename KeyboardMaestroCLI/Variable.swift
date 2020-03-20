@@ -14,21 +14,29 @@ struct Variable : Codable {
 	var value : String
 	
 	static func fromDB(name : String) -> Variable? {
-		for variable in self.all {
-			if variable.name == name {
-				return variable
-			}
+		
+		let source = "tell application \"Keyboard Maestro Engine\" to get the value of the first variable where name is \"\(name.escapingQuotes)\""
+		let result = NSAppleScript(source: source)!.executeAndReturnError(nil)
+		
+		if let value = result.stringValue {
+			return Variable(name: name, value: value)
 		}
 		
 		return nil
 	}
 	
 	static func delete(withName name: String) -> Bool {
-		return false
+		let source = "tell application \"Keyboard Maestro Engine\" to delete variable \"\(name.escapingQuotes)\""
+		NSAppleScript(source: source)!.executeAndReturnError(nil)
+		
+		return true
 	}
 	
 	func save() -> Bool {
-		return false
+		let source = "tell application \"Keyboard Maestro Engine\" to make variable with properties {name:\"\(name.escapingQuotes)\", value:\"\(value.escapingQuotes)\"}"
+		NSAppleScript(source: source)!.executeAndReturnError(nil)
+		
+		return true
 	}
 	
 	static var file = String(NSString(string: "~/Library/Application Support/Keyboard Maestro/Keyboard Maestro Variables.sqlite").expandingTildeInPath)
@@ -42,6 +50,10 @@ struct Variable : Codable {
 	}
 	
 	static var all : [Variable] {
+//		let source = "tell application \"Keyboard Maestro Engine\" to get every variable"
+//		var result = NSAppleScript(source: source)!.executeAndReturnError(nil)
+//
+//		print(result.value)
 		
 		var variables : [Variable] = []
 		for row in try! db.prepare(table) {
@@ -55,11 +67,4 @@ struct Variable : Codable {
 		
 		return variables
 	}
-		
-//		guard let dictionary = NSDictionary(contentsOfFile: file) else {
-//			return [:]
-//		}
-//
-//		return dictionary as! [String: AnyObject]
-//	}
 }

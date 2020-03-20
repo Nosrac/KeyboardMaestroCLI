@@ -10,10 +10,6 @@ import Foundation
 import ArgumentParser
 
 struct KeyboardMaestro: ParsableCommand {
-	static func escape(_ text : String) -> String {
-		return text.replacingOccurrences(of: "\"", with: "\\\"")
-	}
-	
 	static let configuration = CommandConfiguration(
 		commandName: "km",
 		abstract: "(Unofficial) Keyboard Maestro Command Line Interface",
@@ -31,10 +27,10 @@ struct KeyboardMaestro: ParsableCommand {
         func run() {
 			var parameterAppendage = ""
 			if let parameter = parameter {
-				parameterAppendage = " with parameter \"\(escape(parameter))\""
+				parameterAppendage = " with parameter \"\(parameter.escapingQuotes)\""
 			}
 			
-			let source = "tell application \"Keyboard Maestro Engine\" to do script \"\(escape(nameOrID))\"\(parameterAppendage)"
+			let source = "tell application \"Keyboard Maestro Engine\" to do script \"\(nameOrID.escapingQuotes)\"\(parameterAppendage)"
 			
 			NSAppleScript(source: source)!.executeAndReturnError(nil)
         }
@@ -104,17 +100,17 @@ struct KeyboardMaestro: ParsableCommand {
 	struct SpecificVariable : ParsableCommand {
 		static let configuration = CommandConfiguration(
 			commandName: "variable",
-			abstract: "Query variables"
+			abstract: "Query, edit, delete variables"
 		)
 		
 		@Argument(help: "Variable Name")
 		var name: String
 		
-//		@Argument(help: "Sets the value of the variable")
+		@Argument(help: "Sets the value of the variable")
 		var value: String?
 		
-//		@Flag(name: .shortAndLong, help: "Delete the variable")
-		var delete : Bool = false
+		@Flag(name: .shortAndLong, help: "Delete the variable")
+		var delete : Bool
 		
 		var variable : Variable? = nil
 		

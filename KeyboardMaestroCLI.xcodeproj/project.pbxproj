@@ -13,6 +13,7 @@
 		27FB5CE2242546E100E1E497 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FB5CE1242546E100E1E497 /* Group.swift */; };
 		27FB5CE42425570300E1E497 /* Variable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FB5CE32425570300E1E497 /* Variable.swift */; };
 		27FB5CE72425574A00E1E497 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 27FB5CE62425574A00E1E497 /* SQLite */; };
+		27FB5CE92425747E00E1E497 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FB5CE82425747E00E1E497 /* String.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -33,6 +34,7 @@
 		27FB5CDF24253C8800E1E497 /* Macro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Macro.swift; sourceTree = "<group>"; };
 		27FB5CE1242546E100E1E497 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		27FB5CE32425570300E1E497 /* Variable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Variable.swift; sourceTree = "<group>"; };
+		27FB5CE82425747E00E1E497 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				27FB5CD524246DD900E1E497 /* main.swift */,
+				27FB5CE82425747E00E1E497 /* String.swift */,
 				27FB5CDF24253C8800E1E497 /* Macro.swift */,
 				27FB5CE1242546E100E1E497 /* Group.swift */,
 				27FB5CE32425570300E1E497 /* Variable.swift */,
@@ -143,6 +146,7 @@
 			files = (
 				27FB5CE2242546E100E1E497 /* Group.swift in Sources */,
 				27FB5CE024253C8800E1E497 /* Macro.swift in Sources */,
+				27FB5CE92425747E00E1E497 /* String.swift in Sources */,
 				27FB5CD624246DD900E1E497 /* main.swift in Sources */,
 				27FB5CE42425570300E1E497 /* Variable.swift in Sources */,
 			);
