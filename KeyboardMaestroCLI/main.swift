@@ -10,6 +10,10 @@ import Foundation
 import ArgumentParser
 
 struct KeyboardMaestro: ParsableCommand {
+	static func escape(_ text : String) -> String {
+		return text.replacingOccurrences(of: "\"", with: "\\\"")
+	}
+	
 	static let configuration = CommandConfiguration(
 		commandName: "km",
 		abstract: "(Unofficial) Keyboard Maestro Command Line Interface",
@@ -27,10 +31,10 @@ struct KeyboardMaestro: ParsableCommand {
         func run() {
 			var parameterAppendage = ""
 			if let parameter = parameter {
-				parameterAppendage = " with parameter \"\(parameter)\""
+				parameterAppendage = " with parameter \"\(escape(parameter))\""
 			}
 			
-			let source = "tell application \"Keyboard Maestro Engine\" to do script \"\(nameOrID)\"\(parameterAppendage)"
+			let source = "tell application \"Keyboard Maestro Engine\" to do script \"\(escape(nameOrID))\"\(parameterAppendage)"
 			
 			NSAppleScript(source: source)!.executeAndReturnError(nil)
         }
