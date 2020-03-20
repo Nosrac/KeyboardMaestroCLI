@@ -14,7 +14,6 @@ struct Variable : Codable {
 	var value : String
 	
 	static func fromDB(name : String) -> Variable? {
-		
 		let source = "tell application \"Keyboard Maestro Engine\" to get the value of the first variable where name is \"\(name.escapingQuotes)\""
 		let result = NSAppleScript(source: source)!.executeAndReturnError(nil)
 		
